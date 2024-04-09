@@ -1,3 +1,5 @@
+"use client";
+
 import { chatReducer, initialState } from "@/app/agents/streaming/ChatReducer";
 import { useReducer } from "react";
 
