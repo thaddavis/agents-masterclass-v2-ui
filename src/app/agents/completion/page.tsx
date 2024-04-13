@@ -5,7 +5,7 @@ import {
   ChatDispatchContext,
 } from "@/app/agents/completion/ChatContext";
 import { chatReducer, initialState } from "@/app/agents/completion/ChatReducer";
-import { Chat } from "@/components/chat";
+import { Chat } from "@/components/completion-chat/chat";
 import { useReducer } from "react";
 
 export default function Page() {

@@ -21,12 +21,6 @@ export function PromptForm({
 
   const dispatch = React.useContext(ChatDispatchContext);
 
-  // React.useEffect(() => {
-  //   if (inputRef.current) {
-  //     inputRef.current.focus();
-  //   }
-  // }, []);
-
   return (
     <form
       ref={formRef}
@@ -35,11 +29,6 @@ export function PromptForm({
         const value = input.trim();
         try {
           e.preventDefault();
-
-          // Blur focus on mobile
-          // if (window.innerWidth < 600) {
-          //   e.target["message"]?.blur();
-          // }
 
           setInput("");
           if (!value) return;

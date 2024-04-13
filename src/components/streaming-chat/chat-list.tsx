@@ -1,5 +1,5 @@
+import { ChatMessage } from "@/components/streaming-chat/chat-message";
 import { Message } from "@/ts/types/Message";
-import { ChatMessage } from "./chat-message";
 
 export interface P {
   isCompletionLoading: boolean;
@@ -18,7 +18,7 @@ export function ChatList(P: P) {
       })}
 
       {P.isCompletionLoading && (
-        <>
+        <div className="flex justify-center">
           <svg
             fill="none"
             stroke="currentColor"
@@ -31,7 +31,7 @@ export function ChatList(P: P) {
           >
             <path d="M12 3v3m6.366-.366-2.12 2.12M21 12h-3m.366 6.366-2.12-2.12M12 21v-3m-6.366.366 2.12-2.12M3 12h3m-.366-6.366 2.12 2.12"></path>
           </svg>
-        </>
+        </div>
       )}
     </div>
   );

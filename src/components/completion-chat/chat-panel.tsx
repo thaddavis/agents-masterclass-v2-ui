@@ -1,4 +1,4 @@
-import { PromptForm } from "@/components/prompt-form";
+import { PromptForm } from "@/components/completion-chat/prompt-form";
 
 export interface ChatPanelProps {
   id?: string;

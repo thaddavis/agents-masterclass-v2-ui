@@ -3,8 +3,10 @@ import { Message } from "@/ts/types/Message";
 import { BiUser } from "react-icons/bi";
 import { GiArtificialIntelligence } from "react-icons/gi";
 
-import Markdown from "react-markdown";
-import { Separator } from "./ui/separator";
+// import Markdown from "react-markdown";
+
+import ReactMarkdown from "react-markdown";
+import { Separator } from "../shared/ui/separator";
 
 interface P {
   index: number;
@@ -17,8 +19,9 @@ export const ChatMessage = (P: P) => {
       <div key={P.message.id}>
         <div
           className={cn(
-            "group relative mb-4 items-start md:-ml-12",
-            P.message.role === "human" ? "flex" : "flex flex-row-reverse"
+            "group relative mb-4 items-start md:ml-12 bg-gray-50 p-4 rounded-md shadow-sm",
+            // P.message.role === "human" ? "flex" : "flex flex-row-reverse"
+            P.message.role === "human" ? "flex" : "flex"
           )}
         >
           <div
@@ -39,11 +42,28 @@ export const ChatMessage = (P: P) => {
           <div
             className={cn(
               `px-1 space-y-2 overflow-hidden`,
-              P.message.role === "human" ? "ml-4" : "mr-4",
+              // P.message.role === "human" ? "ml-4" : "mr-4",
+              "ml-4",
               P.message.error && "text-red-600"
             )}
           >
-            <Markdown>{P.message.content}</Markdown>
+            <ReactMarkdown
+              components={{
+                p({ className, children, ...props }) {
+                  return (
+                    <p
+                      style={{
+                        whiteSpace: "pre-wrap",
+                      }}
+                    >
+                      {children}
+                    </p>
+                  );
+                },
+              }}
+            >
+              {P.message.content}
+            </ReactMarkdown>
           </div>
         </div>
         <Separator className="my-4 bg-gray-100" />

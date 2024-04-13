@@ -1,8 +1,8 @@
 "use client";
 
 import { ChatContext } from "@/app/agents/completion/ChatContext";
-import { ChatPanel } from "@/components/chat-panel";
-import { EmptyScreen } from "@/components/empty-screen";
+import { ChatPanel } from "@/components/completion-chat/chat-panel";
+import { EmptyScreen } from "@/components/completion-chat/empty-screen";
 import { useScrollAnchor } from "@/lib/hooks/use-scroll-anchor";
 import { cn } from "@/lib/utils";
 import { useContext, useEffect, useState } from "react";
@@ -13,7 +13,7 @@ export interface ChatProps extends React.ComponentProps<"div"> {}
 export function Chat({ id, className }: ChatProps) {
   const [input, setInput] = useState("");
   const chatState = useContext(ChatContext);
-  const { messagesRef, scrollRef, visibilityRef, isAtBottom, scrollToBottom } =
+  const { messagesRef, scrollRef, isAtBottom, scrollToBottom } =
     useScrollAnchor();
 
   useEffect(() => {
@@ -37,7 +37,6 @@ export function Chat({ id, className }: ChatProps) {
         ) : (
           <EmptyScreen />
         )}
-        <div className="h-px w-full" ref={visibilityRef} />
       </div>
       <ChatPanel
         id={id}
