@@ -20,8 +20,7 @@ export const ChatMessage = (P: P) => {
         <div
           className={cn(
             "group relative mb-4 items-start md:ml-12 bg-gray-50 p-4 rounded-md shadow-sm",
-            // P.message.role === "human" ? "flex" : "flex flex-row-reverse"
-            P.message.role === "human" ? "flex" : "flex"
+            "flex"
           )}
         >
           <div

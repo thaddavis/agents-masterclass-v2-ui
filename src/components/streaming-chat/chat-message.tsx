@@ -19,9 +19,9 @@ export const ChatMessage = memo(
         <div key={P.message.id}>
           <div
             className={cn(
-              "group relative mb-4 items-start md:ml-12 bg-gray-50 p-4 rounded-md shadow-sm",
-              // P.message.role === "human" ? "flex" : "flex flex-row-reverse"
-              P.message.role === "human" ? "flex" : "flex"
+              "group relative mb-4 items-start md:ml-12 bg-white p-4 rounded-md shadow-sm",
+              P.message.role === "human" ? "bg-white" : "bg-gray-50",
+              "flex"
             )}
           >
             <div
@@ -74,13 +74,6 @@ export const ChatMessage = memo(
     }
   },
   (prevProps, nextProps) => {
-    console.log(
-      "memoized?",
-      prevProps.message.content === nextProps.message.content
-    );
-
-    // debugger;
-
     return prevProps.message === nextProps.message;
   }
 );
