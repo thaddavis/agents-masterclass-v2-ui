@@ -1,7 +1,7 @@
 import { PromptForm } from "@/components/streaming-with-memory-chat/prompt-form";
 
 export interface ChatPanelProps {
-  sessionId?: string;
+  sessionId: string;
   title?: string;
   input: string;
   setInput: (value: string) => void;
