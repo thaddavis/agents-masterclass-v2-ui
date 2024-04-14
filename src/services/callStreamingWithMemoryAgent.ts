@@ -2,18 +2,20 @@ import { Action } from "@/app/agents/streaming/ChatReducer";
 import { nanoid } from "@/lib/utils";
 import React from "react";
 
-export async function callStreamingAgent(
+export async function callStreamingWithMemoryAgent(
+  sessionId: string,
   prompt: string,
   dispatch: React.Dispatch<Action>
 ) {
   const resp = await fetch(
-    `${process.env.NEXT_PUBLIC_AGENT_API_URL}/streaming-agent/completion`,
+    `${process.env.NEXT_PUBLIC_AGENT_API_URL}/streaming-with-memory-agent/completion`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        sessionId: sessionId,
         content: prompt,
       }),
     }

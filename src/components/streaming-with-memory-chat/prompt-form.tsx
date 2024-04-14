@@ -2,18 +2,20 @@
 
 import * as React from "react";
 
-import { ChatDispatchContext } from "@/app/agents/streaming/ChatContext";
+import { ChatDispatchContext } from "@/app/agents/streaming-with-memory/ChatSessionContext";
 import { useEnterSubmit } from "@/lib/hooks/use-enter-submit";
 import { nanoid } from "@/lib/utils";
-import { callStreamingAgent } from "@/services/callStreamingAgent";
+import { callStreamingWithMemoryAgent } from "@/services/callStreamingWithMemoryAgent";
 import { useRouter } from "next/navigation";
 
 export function PromptForm({
   input,
   setInput,
+  sessionId,
 }: {
   input: string;
   setInput: (value: string) => void;
+  sessionId: string;
 }) {
   const router = useRouter();
   const { formRef, onKeyDown } = useEnterSubmit();
@@ -26,18 +28,18 @@ export function PromptForm({
       ref={formRef}
       onSubmit={async (e: any) => {
         const humanMessageId = nanoid();
-        const value = input.trim();
+        const prompt = input.trim();
         try {
           e.preventDefault();
 
           setInput("");
-          if (!value) return;
+          if (!prompt) return;
 
           dispatch({
             type: "ADD_MESSAGE",
             payload: {
               id: humanMessageId,
-              content: value,
+              content: prompt,
               role: "human",
               error: null,
             },
@@ -48,7 +50,7 @@ export function PromptForm({
             payload: true,
           });
 
-          await callStreamingAgent(value, dispatch);
+          await callStreamingWithMemoryAgent(sessionId, prompt, dispatch);
 
           dispatch({
             type: "SET_COMPLETION_LOADING",

@@ -9,6 +9,7 @@ import {
   BiBrain,
   BiCalendar,
   BiChat,
+  BiMemoryCard,
   BiQuestionMark,
   BiWater,
 } from "react-icons/bi";
@@ -23,37 +24,36 @@ const navigation = [
     name: "Completion Agent",
     href: "/agents/completion",
     icon: BiChat,
-    current: true,
   },
   {
     name: "Streaming Agent",
     href: "/agents/streaming",
     icon: BiWater,
-    current: false,
+  },
+  {
+    name: "Streaming Agent w/ Memory",
+    href: "/agents/streaming-with-memory",
+    icon: BiMemoryCard,
   },
   {
     name: "R.A.G. Agent",
     href: "/agents/rag",
     icon: BiQuestionMark,
-    current: false,
   },
   {
     name: "ReAct Agent",
     href: "/agents/react",
     icon: BiBrain,
-    current: false,
   },
   {
     name: "Plan & Execute Agent",
     href: "/agents/plan-execute",
     icon: BiCalendar,
-    current: false,
   },
   {
     name: "Agent Swarms",
     href: "/agents/swarms",
     icon: FaPeopleGroup,
-    current: false,
   },
 ];
 
