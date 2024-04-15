@@ -5,8 +5,8 @@ import { GrMultimedia } from "react-icons/gr";
 export default function Page() {
   return (
     <div className=" flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-md max-w-lg">
-        <h2 className="text-3xl font-bold mb-6 text-center">
+      <div className="p-8 rounded-lg shadow-sm max-w-lg border bg-background">
+        <h2 className="text-3xl font-semibold mb-6 text-center">
           More advanced agent types include...
         </h2>
         <ul className="space-y-4">

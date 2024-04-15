@@ -44,7 +44,7 @@ const navigation = [
     icon: BiBrain,
   },
   {
-    name: "Next Level ****",
+    name: "Next Level",
     href: "/agents/next-level",
     icon: BiRocket,
   },
