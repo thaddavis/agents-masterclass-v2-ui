@@ -19,7 +19,7 @@ export const ChatMessage = memo(
         <div key={P.message.id}>
           <div
             className={cn(
-              "group relative mb-4 items-start md:ml-12 bg-white p-4 rounded-md shadow-sm",
+              "group relative mb-4 items-start bg-white p-4 rounded-md",
               P.message.role === "human" ? "bg-white" : "bg-gray-50",
               "flex"
             )}

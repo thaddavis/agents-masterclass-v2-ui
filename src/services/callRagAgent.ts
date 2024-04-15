@@ -21,6 +21,8 @@ export async function callRagAgent(
     }
   );
 
+  if (!resp.ok) throw "Network response was not OK";
+
   const reader = resp?.body?.getReader();
 
   const decoder = new TextDecoder();

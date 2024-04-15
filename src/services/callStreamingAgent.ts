@@ -19,6 +19,8 @@ export async function callStreamingAgent(
     }
   );
 
+  if (!resp.ok) throw "Network response was not OK";
+
   const reader = resp?.body?.getReader();
 
   const decoder = new TextDecoder();

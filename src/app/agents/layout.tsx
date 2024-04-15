@@ -7,14 +7,12 @@ import { Fragment, useState } from "react";
 
 import {
   BiBrain,
-  BiCalendar,
   BiChat,
   BiMemoryCard,
   BiQuestionMark,
+  BiRocket,
   BiWater,
 } from "react-icons/bi";
-
-import { FaPeopleGroup } from "react-icons/fa6";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -46,14 +44,9 @@ const navigation = [
     icon: BiBrain,
   },
   {
-    name: "Plan & Execute Agent",
-    href: "/agents/plan-execute",
-    icon: BiCalendar,
-  },
-  {
-    name: "Agent Swarms",
-    href: "/agents/swarms",
-    icon: FaPeopleGroup,
+    name: "Next Level ****",
+    href: "/agents/next-level",
+    icon: BiRocket,
   },
 ];
 

@@ -1,14 +1,14 @@
-import { Action } from "@/app/agents/streaming/ChatReducer";
+import { Action } from "@/app/agents/react/ChatSessionReducer";
 import { nanoid } from "@/lib/utils";
 import React from "react";
 
-export async function callStreamingWithMemoryAgent(
+export async function callReActAgent(
   sessionId: string,
   prompt: string,
   dispatch: React.Dispatch<Action>
 ) {
   const resp = await fetch(
-    `${process.env.NEXT_PUBLIC_AGENT_API_URL}/streaming-with-memory-agent/completion`,
+    `${process.env.NEXT_PUBLIC_AGENT_API_URL}/react-agent/completion`,
     {
       method: "POST",
       headers: {
@@ -79,16 +79,18 @@ function dispatchEventToState(
   aiMessageId: string,
   accMessage: { content: string }
 ) {
+  console.log("EVENT", parsedChunk["event"]);
+
   if (parsedChunk["event"] === "on_chat_model_start") {
-    dispatch({
-      type: "ADD_MESSAGE",
-      payload: {
-        id: aiMessageId,
-        content: "",
-        role: "ai",
-        error: null,
-      },
-    });
+    // dispatch({
+    //   type: "ADD_MESSAGE",
+    //   payload: {
+    //     id: aiMessageId,
+    //     content: "",
+    //     role: "ai",
+    //     error: null,
+    //   },
+    // });
   } else if (parsedChunk["event"] === "on_chat_model_stream") {
     accMessage.content += parsedChunk["data"];
     dispatch({
@@ -99,6 +101,46 @@ function dispatchEventToState(
       },
     });
   } else if (parsedChunk["event"] === "on_chat_model_end") {
+    // debugger;
+    // dispatch({
+    //   type: "ADD_MESSAGE",
+    //   payload: {
+    //     id: aiMessageId,
+    //     content: parsedChunk["data"],
+    //     role: "ai",
+    //     error: null,
+    //   },
+    // });
+  } else if (parsedChunk["event"] === "on_chain_start") {
+    dispatch({
+      type: "ADD_MESSAGE",
+      payload: {
+        id: aiMessageId,
+        content: "",
+        role: "ai",
+        error: null,
+      },
+    });
+  } else if (parsedChunk["event"] === "on_chain_end") {
+    // dispatch({
+    //   type: "ADD_MESSAGE",
+    //   payload: {
+    //     id: aiMessageId,
+    //     content: parsedChunk["data"],
+    //     role: "ai",
+    //     error: null,
+    //   },
+    // });
+  } else if (parsedChunk["event"] === "on_tool_start") {
+    dispatch({
+      type: "SET_CURRENT_TOOL",
+      payload: parsedChunk["data"],
+    });
+  } else if (parsedChunk["event"] === "on_tool_end") {
+    dispatch({
+      type: "SET_CURRENT_TOOL",
+      payload: "",
+    });
   } else {
     console.error("Unknown event:", parsedChunk["event"]);
   }

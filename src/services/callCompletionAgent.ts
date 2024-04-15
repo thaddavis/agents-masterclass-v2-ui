@@ -1,5 +1,3 @@
-import assert from "assert";
-
 export async function callCompletionAgent(prompt: string) {
   const resp = await fetch(
     `${process.env.NEXT_PUBLIC_AGENT_API_URL}/completion-agent/completion`,
@@ -14,7 +12,7 @@ export async function callCompletionAgent(prompt: string) {
     }
   );
 
-  assert(resp.ok, "Network response was not OK");
+  if (!resp.ok) throw "Network response was not OK";
 
   return resp;
 }
